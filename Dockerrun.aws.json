@@ -11,15 +11,15 @@
           "containerPort": 80
         }
       ],
-      "links": ["frontend"],
-      "essential": false
+      "links": ["frontend", "backend"],
+      "essential": true
     },
     {
       "name": "frontend",
       "image": "stephengrider/multi-client",
       "hostname": "frontend",
       "memory": 128,
-      "essential": true
+      "essential": false
     },
     {
       "name": "worker",
