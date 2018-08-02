@@ -2,14 +2,28 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
     {
+      "name": "nginx",
+      "image": "stephengrider/multi-nginx",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ]
+    },
+    {
       "name": "frontend",
       "image": "stephengrider/multi-client",
+      "hostname": "frontend",
       "essential": true,
       "memory": 128
     },
     {
       "name": "backend",
       "image": "stephengrider/multi-server",
+      "hostname": "backend",
       "essential": true,
       "memory": 512
     },
