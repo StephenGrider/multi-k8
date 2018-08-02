@@ -8,6 +8,15 @@ before_install:
 script:
   - docker run stephengrider/react-test npm test -- --coverage
 
+after_success:
+  - docker build -t stephengrider/multi-client ./client/Dockerfile ./client
+  - docker build -t stephengrider/multi-server ./server/Dockerfile ./server
+  - docker build -t stephengrider/multi-worker ./worker/Dockerfile ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push stephengrider/multi-client
+  - docker push stephengrider/multi-server
+  - docker push stephengrider/multi-worker
+  
 deploy:
   provider: elasticbeanstalk
   access_key_id: $AWS_ACCESS_KEY
