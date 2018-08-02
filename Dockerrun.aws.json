@@ -4,7 +4,6 @@
     {
       "name": "nginx",
       "image": "stephengrider/multi-nginx",
-      "essential": true,
       "memory": 128,
       "portMappings": [
         {
@@ -17,20 +16,18 @@
       "name": "frontend",
       "image": "stephengrider/multi-client",
       "hostname": "frontend",
-      "essential": true,
       "memory": 128
     },
     {
       "name": "backend",
       "image": "stephengrider/multi-server",
       "hostname": "backend",
-      "essential": true,
+
       "memory": 512
     },
     {
       "name": "worker",
       "image": "stephengrider/multi-worker",
-      "essential": false,
       "memory": 512
     }
   ]
