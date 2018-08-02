@@ -18,8 +18,8 @@
       "name": "frontend",
       "image": "stephengrider/multi-client",
       "hostname": "frontend",
-      "essential": true,
-      "memory": 128
+      "memory": 128,
+      "essential": true
     },
     {
       "name": "backend",
