@@ -1,11 +1,4 @@
-,
-    {
-      "name": "backend",
-      "image": "stephengrider/multi-server",
-      "hostname": "backend",
-      "memory": 128,
-      "essential": false
-    },
+
     {
       "name": "worker",
       "image": "stephengrider/multi-worker",
