@@ -19,8 +19,7 @@
       "image": "stephengrider/multi-client",
       "hostname": "frontend",
       "memory": 256,
-      "essential": true,
-      "links": ["nginx"]
+      "essential": true
     }
   ]
 }
