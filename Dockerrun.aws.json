@@ -4,7 +4,7 @@
     {
       "name": "nginx",
       "image": "stephengrider/multi-nginx",
-      "memory": 128,
+      "memory": 512,
       "portMappings": [
         {
           "hostPort": 80,
@@ -16,13 +16,12 @@
       "name": "frontend",
       "image": "stephengrider/multi-client",
       "hostname": "frontend",
-      "memory": 128
+      "memory": 512
     },
     {
       "name": "backend",
       "image": "stephengrider/multi-server",
       "hostname": "backend",
-
       "memory": 512
     },
     {
