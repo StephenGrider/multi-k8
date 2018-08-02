@@ -1,0 +1,85 @@
+//////////
+// Express App Setup
+//////////
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+//////////
+
+//////////
+// Postgres Client Setup
+//////////
+// const { Client } = require('pg');
+// const pgClient = new Client({
+//   user: process.env.PGUSER,
+//   host: process.env.PGHOST,
+//   database: process.env.PGDATABASE,
+//   password: process.env.PGPASSWORD,
+//   port: process.env.PGPORT
+// });
+// setTimeout(() => pgClient.connect(), 2500);
+
+// (async () => {
+//   try {
+//     await pgClient.query(
+//       'CREATE TABLE IF NOT EXISTS posts (title VARCHAR(240))'
+//     );
+//   } catch (e) {
+//     console.log(e);
+//   }
+// })();
+//////////
+
+//////////
+// Redis Client Setup
+//////////
+const redis = require('redis');
+const redisClient = redis.createClient({
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT
+});
+redisClient.set('visits', 0);
+//////////
+
+app.get('/', (req, res) => {
+  res.send('hi');
+});
+
+// app.get('/posts', async (req, res) => {
+//   // const posts = await pgClient.query('SELECT * from posts');
+//   // res.send(posts.rows);
+
+//   res.send([{ title: 'hi' }, { title: 'there' }]);
+// });
+
+// app.get('/posts', async (req, res) => {
+//   const posts = await pgClient.query('SELECT * from posts');
+//   res.send(posts.rows);
+// });
+
+app.post('/posts', async (req, res) => {
+  const title = req.body.title;
+
+  try {
+    await pgClient.query('INSERT INTO posts(title) VALUES($1)', [title]);
+    res.sendStatus(201);
+  } catch (e) {
+    res.status(500).send('Error creating post');
+  }
+});
+
+app.get('/visits', (req, res) => {
+  redisClient.get('visits', (err, visits) => {
+    res.send(visits);
+    redisClient.set('visits', parseInt(visits) + 1);
+  });
+});
+
+app.listen(5000, err => {
+  console.log('port', process.env.PORT);
+  console.log('Listening!');
+});
