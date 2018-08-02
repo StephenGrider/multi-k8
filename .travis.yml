@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run stephengrider/react-test npm test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+  region: "us-west-2"
+  app: "multi"
+  env: "Multi-env"
+  bucket_name: "elasticbeanstalk-us-west-2-306476627547"
+  bucket_path: "multi-env"
+  on:
+    branch: master
