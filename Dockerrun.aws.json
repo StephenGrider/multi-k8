@@ -29,7 +29,7 @@
     },
     {
       "name": "worker",
-      "image": "stpehengrider/multi-worker",
+      "image": "stephengrider/multi-worker",
       "essential": false,
       "memory": 512
     }
