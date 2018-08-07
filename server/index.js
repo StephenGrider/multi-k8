@@ -1,3 +1,4 @@
+const keys = require('./keys');
 //////////
 // Express App Setup
 //////////
@@ -15,11 +16,11 @@ app.use(bodyParser.json());
 //////////
 const { Client } = require('pg');
 const pgClient = new Client({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: process.env.PGPORT
+  user: keys.pgUser,
+  host: keys.pgHost,
+  database: keys.pgDatabase,
+  password: keys.pgPassword,
+  port: keys.pgPort
 });
 setTimeout(() => pgClient.connect(), 2500);
 
@@ -37,8 +38,8 @@ setTimeout(() => pgClient.connect(), 2500);
 //////////
 const redis = require('redis');
 const redisClient = redis.createClient({
-  host: process.env.REDIS_HOST,
-  port: process.env.REDIS_PORT
+  host: keys.redisHost,
+  port: keys.redisPort
 });
 const redisPublisher = redisClient.duplicate();
 //////////

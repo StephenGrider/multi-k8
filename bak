@@ -1,7 +1,0 @@
-
-    {
-      "name": "worker",
-      "image": "stephengrider/multi-worker",
-      "memory": 128,
-      "essential": false
-    }
