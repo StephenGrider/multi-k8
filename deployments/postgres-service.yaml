@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: postgres-server
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: postgres
   ports:
