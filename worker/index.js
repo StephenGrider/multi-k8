@@ -2,6 +2,7 @@ const keys = require('./keys');
 const redis = require('redis');
 
 const redisClient = redis.createClient({
+  retry_strategy: () => 1000,
   host: keys.redisHost,
   port: keys.redisPort
 });
