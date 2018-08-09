@@ -16,5 +16,12 @@ spec:
         - name: postgres
           image: postgres
           imagePullPolicy: Always
+          volumeMounts:
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql
           ports:
             - containerPort: 5432
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-persistent-volume-claim

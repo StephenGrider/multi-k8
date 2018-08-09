@@ -13,15 +13,15 @@ app.use(bodyParser.json());
 //////////
 // Postgres Client Setup
 //////////
-const { Client } = require('pg');
-const pgClient = new Client({
+const { Pool } = require('pg');
+const pgClient = new Pool({
   user: keys.pgUser,
   host: keys.pgHost,
   database: keys.pgDatabase,
   password: keys.pgPassword,
   port: keys.pgPort
 });
-setTimeout(() => pgClient.connect(), 2500);
+pgClient.on('error', () => console.log('Lost PG connection'));
 
 (async () => {
   try {
@@ -37,6 +37,7 @@ setTimeout(() => pgClient.connect(), 2500);
 //////////
 const redis = require('redis');
 const redisClient = redis.createClient({
+  retry_strategy: () => 1000,
   host: keys.redisHost,
   port: keys.redisPort
 });

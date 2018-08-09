@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: worker
-          image: stephengrider/multi-worker
+          image: stephengrider/multi-worker:latest
           imagePullPolicy: Always
           env:
             - name: REDIS_HOST
