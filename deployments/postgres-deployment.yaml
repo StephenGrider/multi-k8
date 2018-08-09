@@ -13,8 +13,8 @@ spec:
         app: postgres
     spec:
       containers:
-        - name: postgres:latest
-          image: postgres
+        - name: postgres
+          image: postgres:latest
           ports:
             - containerPort: 5432
           volumeMounts:

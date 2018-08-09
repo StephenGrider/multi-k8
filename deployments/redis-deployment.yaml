@@ -13,8 +13,8 @@ spec:
         app: redis
     spec:
       containers:
-        - name: redis:latest
-          image: redis
+        - name: redis
+          image: redis:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 6379
