@@ -16,6 +16,21 @@ spec:
         - name: api
           image: stephengrider/multi-api
           imagePullPolicy: Always
+          env:
+            - name: REDIS_HOST
+              value: redis-server
+            - name: REDIS_PORT
+              value: '6379'
+            - name: PGUSER
+              value: postgres
+            - name: PGHOST
+              value: postgres
+            - name: PGDATABASE
+              value: postgres
+            - name: PGPASSWORD
+              value: postgres_password
+            - name: PGPORT
+              value: '5432'
           ports:
             - name: http
               containerPort: 5000
