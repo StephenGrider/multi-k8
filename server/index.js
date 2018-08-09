@@ -43,23 +43,23 @@ const redisClient = redis.createClient({
 const redisPublisher = redisClient.duplicate();
 //////////
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   res.send('hi');
 });
 
-app.get('/api/values/all', async (req, res) => {
+app.get('/values/all', async (req, res) => {
   const values = await pgClient.query('SELECT * from values');
 
   res.send(values.rows);
 });
 
-app.get('/api/values/current', async (req, res) => {
+app.get('/values/current', async (req, res) => {
   redisClient.hgetall('values', (err, values) => {
     res.send(values);
   });
 });
 
-app.post('/api/values', async (req, res) => {
+app.post('/values', async (req, res) => {
   const value = req.body.value;
   if (parseInt(value) > 40) {
     return res.status(422).send('Value too high');

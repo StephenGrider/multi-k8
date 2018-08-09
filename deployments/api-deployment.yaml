@@ -24,7 +24,7 @@ spec:
             - name: PGUSER
               value: postgres
             - name: PGHOST
-              value: postgres
+              value: postgres-server
             - name: PGDATABASE
               value: postgres
             - name: PGPASSWORD
