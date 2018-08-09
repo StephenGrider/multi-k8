@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: ingress-service
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: 'false'
 spec:
   rules:
@@ -14,7 +15,7 @@ spec:
               servicePort: 3000
     - http:
         paths:
-          - path: /api
+          - path: /api/*
             backend:
               serviceName: api-cluster-ip-service
               servicePort: 5000
