@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: stephengrider/multi-api
+          image: stephengrider/multi-api:latest
           imagePullPolicy: Always
           env:
             - name: REDIS_HOST

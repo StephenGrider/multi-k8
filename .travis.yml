@@ -1,18 +1,44 @@
 sudo: required
 services:
   - docker
-
+cache:
+  directories:
+  - $HOME/google-cloud-sdk
+env:
+  global:
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1 
 before_install:
+  - if [ ! -d $HOME/google-cloud-sdk/bin ]; then
+    rm -rf $HOME/google-cloud-sdk;
+    curl https://sdk.cloud.google.com | bash > /dev/null;
+  fi
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - gcloud components update kubectl
+  - gcloud version
+  - gcloud config set project multi-212723
+  - gcloud config set compute/zone us-central1-a
+  - gcloud container clusters get-credentials multi-cluster
   - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run stephengrider/react-test npm test -- --coverage
 
 after_success:
+  - export SHA=$(git rev-parse HEAD)
   - docker build -t stephengrider/multi-client -f ./client/Dockerfile ./client
-  - docker build -t stephengrider/multi-server -f ./server/Dockerfile ./server
+  - docker build -t stephengrider/multi-api -f ./server/Dockerfile ./server
   - docker build -t stephengrider/multi-worker -f ./worker/Dockerfile ./worker
+  - docker tag stephengrider/multi-client:latest stephengrider/multi-client:$SHA
+  - docker tag stephengrider/multi-server:latest stephengrider/multi-server:$SHA
+  - docker tag stephengrider/multi-worker:latest stephengrider/multi-worker:$SHA
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push stephengrider/multi-client
-  - docker push stephengrider/multi-server
-  - docker push stephengrider/multi-worker
+  - docker push stephengrider/multi-client:latest
+  - docker push stephengrider/multi-api:latest
+  - docker push stephengrider/multi-worker:latest
+  - docker push stephengrider/multi-client:$SHA
+  - docker push stephengrider/multi-api:$SHA
+  - docker push stephengrider/multi-worker:$SHA
+  - kubectl apply -f deployments
+  - kubectl set image deployments/api-deployment api=stephengrider/multi-api:$SHA
+  - kubectl set image deployments/client-deployment client=stephengrider/multi-client:$SHA
+  - kubectl set image deployments/worker-deployment worker=stephengrider/multi-worker:$SHA
