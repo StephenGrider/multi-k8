@@ -2,7 +2,7 @@ docker build -t stephengrider/multi-client -f ./client/Dockerfile ./client
 docker build -t stephengrider/multi-api -f ./server/Dockerfile ./server
 docker build -t stephengrider/multi-worker -f ./worker/Dockerfile ./worker
 docker tag stephengrider/multi-client:latest stephengrider/multi-client:$SHA
-docker tag stephengrider/multi-server:latest stephengrider/multi-server:$SHA
+docker tag stephengrider/multi-api:latest stephengrider/multi-server:$SHA
 docker tag stephengrider/multi-worker:latest stephengrider/multi-worker:$SHA
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 docker push stephengrider/multi-client:latest
