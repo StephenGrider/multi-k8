@@ -12,6 +12,6 @@ docker push stephengrider/multi-client:$SHA
 docker push stephengrider/multi-api:$SHA
 docker push stephengrider/multi-worker:$SHA
 kubectl apply -f deployments
-kubectl set image deployments/api-deployment api=stephengrider/multi-api:$SHA
-kubectl set image deployments/client-deployment client=stephengrider/multi-client:$SHA
-kubectl set image deployments/worker-deployment worker=stephengrider/multi-worker:$SHA
+kubectl set image deployments/api-deployment api=stephengrider/multi-api:$SHA --record 
+kubectl set image deployments/client-deployment client=stephengrider/multi-client:$SHA --record 
+kubectl set image deployments/worker-deployment worker=stephengrider/multi-worker:$SHA --record
