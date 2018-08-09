@@ -3,17 +3,17 @@ services:
   - docker
 cache:
   directories:
-  - $HOME/google-cloud-sdk
+    - $HOME/google-cloud-sdk
 env:
   global:
-    - CLOUDSDK_CORE_DISABLE_PROMPTS=1 
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
     - SHA=$(git rev-parse HEAD)
 before_install:
   - openssl aes-256-cbc -K $encrypted_248412cf5212_key -iv $encrypted_248412cf5212_iv -in service.json.enc -out service.json -d
   - if [ ! -d $HOME/google-cloud-sdk/bin ]; then
     rm -rf $HOME/google-cloud-sdk;
     curl https://sdk.cloud.google.com | bash > /dev/null;
-  fi
+    fi
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
   - gcloud version
