@@ -1,3 +1,6 @@
+docker pull stephengrider/multi-client:latest
+docker pull stephengrider/multi-api:latest
+docker pull stephengrider/multi-worker:latest
 docker build -t stephengrider/multi-client -f ./client/Dockerfile ./client
 docker build -t stephengrider/multi-api -f ./server/Dockerfile ./server
 docker build -t stephengrider/multi-worker -f ./worker/Dockerfile ./worker

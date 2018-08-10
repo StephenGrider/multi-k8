@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: k8s-multi-tls
   issuerRef:
-    name: letsencrypt-prod
+    name: letsencrypt-staging
     kind: ClusterIssuer
   commonName: www.k8s-multi.com
   dnsNames:
