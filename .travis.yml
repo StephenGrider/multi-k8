@@ -13,12 +13,12 @@ before_install:
   - if [ ! -d $HOME/google-cloud-sdk/bin ]; then
     rm -rf $HOME/google-cloud-sdk;
     curl https://sdk.cloud.google.com | bash > /dev/null;
-    fi
+  fi
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
   - gcloud version
   - gcloud auth activate-service-account --key-file service-account.json
-  - gcloud config set project k8multi
+  - gcloud config set project k4multi
   - gcloud config set compute/zone us-central1-a
   - gcloud container clusters get-credentials cluster
   - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
