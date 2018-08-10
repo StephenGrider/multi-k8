@@ -7,6 +7,10 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: 'false'
 spec:
+  # tls:
+  #   - hosts:
+  #       - www.k8s-multi.com
+  #     secretName: multi-tls
   rules:
     - http:
         paths:
