@@ -9,7 +9,7 @@ env:
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
     - SHA=$(git rev-parse HEAD)
 before_install:
-  - openssl aes-256-cbc -K $encrypted_248412cf5212_key -iv $encrypted_248412cf5212_iv -in service.json.enc -out service.json -d
+  - openssl aes-256-cbc -K $encrypted_248412cf5212_key -iv $encrypted_248412cf5212_iv -in service-account.json.enc -out service-account.json -d
   - if [ ! -d $HOME/google-cloud-sdk/bin ]; then
     rm -rf $HOME/google-cloud-sdk;
     curl https://sdk.cloud.google.com | bash > /dev/null;
