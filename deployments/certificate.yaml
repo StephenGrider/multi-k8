@@ -14,6 +14,6 @@ spec:
   acme:
     config:
       - http01:
-          ingress: ingress-service
+          ingressClass: nginx
         domains:
           - www.k8s-multi.com
