@@ -27,10 +27,13 @@ spec:
               value: postgres-server
             - name: PGDATABASE
               value: postgres
-            - name: PGPASSWORD
-              value: postgres_password
             - name: PGPORT
               value: '5432'
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword
+                  key: PGPASSWORD
           ports:
             - name: http
               containerPort: 5000
