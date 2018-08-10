@@ -18,9 +18,9 @@ before_install:
   - gcloud components update kubectl
   - gcloud version
   - gcloud auth activate-service-account --key-file service-account.json
-  - gcloud config set project multi-212723
+  - gcloud config set project k8multi
   - gcloud config set compute/zone us-central1-a
-  - gcloud container clusters get-credentials multi-cluster
+  - gcloud container clusters get-credentials cluster
   - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
 
 script:
