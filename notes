@@ -1,2 +1,21 @@
-https://cloud.google.com/community/tutorials/nginx-ingress-gke
-kubectl create secret generic pgpassword --from-literal PGPASSWORD=postgres_password
+- config gcloud
+  gcloud config set compute/zone us-central1-a
+  gcloud config set project k4multi-212920
+  gcloud container clusters get-credentials CLUSTER_NAME
+
+- install helm / install nginx
+  curl -o get_helm.sh https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get
+  chmod +x get_helm.sh
+  ./get_helm.sh
+  kubectl create serviceaccount --namespace kube-system tiller
+  kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+  helm init --service-account tiller --upgrade
+  helm install --name nginx-ingress stable/nginx-ingress --set rbac.create=true
+  
+- set PG secret
+  kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345asdf
+
+- set https
+  helm install --name cert-manager --version v0.3.2 \
+    --namespace kube-system stable/cert-manager
+  et al https://github.com/ahmetb/gke-letsencrypt/blob/master/30-setup-letsencrypt.md
