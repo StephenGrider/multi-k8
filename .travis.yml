@@ -22,7 +22,7 @@ before_install:
   - gcloud config set compute/zone us-central1-a
   - gcloud container clusters get-credentials k4cluster
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker pull stephengrider/react-test:latest
+  # - docker pull stephengrider/react-test:latest
   - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
   - docker push stephengrider/react-test:latest
 
