@@ -7,7 +7,6 @@ docker build --cache-from stephengrider/multi-worker -t stephengrider/multi-work
 docker tag stephengrider/multi-client:latest stephengrider/multi-client:$SHA
 docker tag stephengrider/multi-api:latest stephengrider/multi-api:$SHA
 docker tag stephengrider/multi-worker:latest stephengrider/multi-worker:$SHA
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 docker push stephengrider/multi-client:latest
 docker push stephengrider/multi-api:latest
 docker push stephengrider/multi-worker:latest
