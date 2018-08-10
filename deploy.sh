@@ -11,8 +11,6 @@ docker push stephengrider/multi-worker:latest
 docker push stephengrider/multi-client:$SHA
 docker push stephengrider/multi-api:$SHA
 docker push stephengrider/multi-worker:$SHA
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/cloud-generic.yaml
 kubectl apply -f deployments
 kubectl set image deployments/api-deployment api=stephengrider/multi-api:$SHA --record 
 kubectl set image deployments/client-deployment client=stephengrider/multi-client:$SHA --record 
