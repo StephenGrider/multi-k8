@@ -1,9 +1,9 @@
 docker pull stephengrider/multi-client:latest
 docker pull stephengrider/multi-api:latest
 docker pull stephengrider/multi-worker:latest
-docker build -t stephengrider/multi-client -f ./client/Dockerfile ./client
-docker build -t stephengrider/multi-api -f ./server/Dockerfile ./server
-docker build -t stephengrider/multi-worker -f ./worker/Dockerfile ./worker
+docker build --cache-from stephengrider/multi-client -t stephengrider/multi-client:latest -f ./client/Dockerfile ./client
+docker build --cache-from stephengrider/multi-api -t stephengrider/multi-api:latest -f ./server/Dockerfile ./server
+docker build --cache-from stephengrider/multi-worker -t stephengrider/multi-worker:latest -f ./worker/Dockerfile ./worker
 docker tag stephengrider/multi-client:latest stephengrider/multi-client:$SHA
 docker tag stephengrider/multi-api:latest stephengrider/multi-api:$SHA
 docker tag stephengrider/multi-worker:latest stephengrider/multi-worker:$SHA
