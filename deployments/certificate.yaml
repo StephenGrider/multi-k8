@@ -4,9 +4,9 @@ metadata:
   name: k8s-multi-com-tls
   namespace: default
 spec:
-  secretName: k8s-multi-tls
+  secretName: k8s-multi-com-tls
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-prod
     kind: ClusterIssuer
   commonName: www.k8s-multi.com
   dnsNames:
