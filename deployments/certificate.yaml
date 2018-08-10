@@ -4,7 +4,7 @@ metadata:
   name: k8s-multi-com-tls
   namespace: default
 spec:
-  secretName: k8s-multi-com-tls
+  secretName: k8s-multi-com-tls-prod
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer

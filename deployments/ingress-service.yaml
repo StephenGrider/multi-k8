@@ -12,7 +12,7 @@ spec:
   tls:
     - hosts:
         - www.k8s-multi.com
-      secretName: k8s-multi-com-tls
+      secretName: k8s-multi-com-tls-prod
   rules:
     - http:
         paths:
