@@ -20,7 +20,7 @@ before_install:
   - gcloud auth activate-service-account --key-file service-account.json
   - gcloud config set project k4multi-212920
   - gcloud config set compute/zone us-central1-a
-  - gcloud container clusters get-credentials cluster
+  - gcloud container clusters get-credentials k4cluster
   - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
 
 script:
