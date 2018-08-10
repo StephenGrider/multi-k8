@@ -1,6 +1,6 @@
 - config gcloud
   gcloud config set compute/zone us-central1-a
-  gcloud config set project k4multi-212920
+  gcloud config set project k2multi-212923
   gcloud container clusters get-credentials CLUSTER_NAME
 
 - install helm / install nginx

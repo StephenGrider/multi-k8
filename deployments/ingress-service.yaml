@@ -4,9 +4,10 @@ metadata:
   name: ingress-service
   annotations:
     kubernetes.io/ingress.class: 'nginx'
-    certmanager.k8s.io/cluster-issuer: 'letsencrypt-prod'
+    certmanager.k8s.io/cluster-issuer: 'letsencrypt-staging'
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: 'false'
+    kubernetes.io/ingress.global-static-ip-name: 'ingress-static-ip'
 spec:
   tls:
     - hosts:
