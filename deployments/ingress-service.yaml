@@ -14,13 +14,15 @@ spec:
         - www.k8s-multi.com
       secretName: k8s-multi-com-tls-prod
   rules:
-    - http:
+    - host: www.k8s-multi.com
+      http:
         paths:
           - path: /*
             backend:
               serviceName: client-cluster-ip-service
               servicePort: 3000
-    - http:
+    - host: www.k8s-multi.com
+      http:
         paths:
           - path: /api/*
             backend:
