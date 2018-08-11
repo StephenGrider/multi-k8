@@ -21,9 +21,6 @@ spec:
             backend:
               serviceName: client-cluster-ip-service
               servicePort: 3000
-    - host: www.k8s-multi.com
-      http:
-        paths:
           - path: /api/*
             backend:
               serviceName: api-cluster-ip-service
