@@ -4,7 +4,7 @@ metadata:
   name: k8s-multi-com-tls
   namespace: default
 spec:
-  secretName: k8s-multi-com-prod
+  secretName: k8s-com
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
@@ -18,3 +18,4 @@ spec:
           ingressClass: nginx
         domains:
           - www.k8s-multi.com
+          - k8s-multi.com

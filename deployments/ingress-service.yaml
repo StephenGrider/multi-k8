@@ -12,27 +12,27 @@ spec:
     - hosts:
         - www.k8s-multi.com
         - k8s-multi.com
-      secretName: k8s-multi-com-prod
+      secretName: k8s-com
   rules:
     - host: k8s-multi.com
       http:
         paths:
-          - path: /*
+          - path: /
             backend:
               serviceName: client-cluster-ip-service
               servicePort: 3000
-          - path: /api/*
+          - path: /api/
             backend:
               serviceName: api-cluster-ip-service
               servicePort: 5000
     - host: www.k8s-multi.com
       http:
         paths:
-          - path: /*
+          - path: /
             backend:
               serviceName: client-cluster-ip-service
               servicePort: 3000
-          - path: /api/*
+          - path: /api/
             backend:
               serviceName: api-cluster-ip-service
               servicePort: 5000
